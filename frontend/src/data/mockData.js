@@ -1,4 +1,4 @@
-// Mock data for Adhiraj Singh's Portfolio
+
 
 export const personalInfo = {
   name: "Adhiraj Singh",

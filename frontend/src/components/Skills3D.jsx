@@ -33,14 +33,14 @@ const Skills3D = () => {
 
   return (
     <section id="skills" className="py-20 bg-gradient-to-b from-[#0a0a0f] to-[#0f0f1a] relative overflow-hidden">
-      {/* Background effects */}
+      {}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
+        {}
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
             <div className="w-12 h-0.5 bg-blue-400" />
@@ -55,7 +55,7 @@ const Skills3D = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
+        {}
         <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up animation-delay-300">
           {categories.map((category) => {
             const Icon = category.icon;
@@ -76,7 +76,7 @@ const Skills3D = () => {
           })}
         </div>
 
-        {/* Skills Grid */}
+        {}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {filteredSkills.map((skill, index) => (
             <div
@@ -90,7 +90,7 @@ const Skills3D = () => {
                 </h3>
               </div>
               
-              {/* Progress Bar with 3D effect */}
+              {}
               <div className="relative h-3 bg-gray-800/50 rounded-full overflow-hidden">
                 <div 
                   className={`absolute inset-y-0 left-0 bg-gradient-to-r ${getCategoryColor(skill.category)} rounded-full transition-all duration-1000 ease-out shadow-lg`}
@@ -103,7 +103,7 @@ const Skills3D = () => {
                 </div>
               </div>
 
-              {/* Skill category badge */}
+              {}
               <div className="mt-3">
                 <span className="inline-block px-3 py-1 text-xs font-mono bg-white/5 text-gray-400 rounded-full border border-white/10">
                   {skill.category}
@@ -113,7 +113,7 @@ const Skills3D = () => {
           ))}
         </div>
 
-        {/* Soft Skills */}
+        {}
         <div className="animate-fade-in-up animation-delay-500">
           <h3 className="text-3xl font-bold text-white text-center mb-8">
             Soft <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Skills</span>

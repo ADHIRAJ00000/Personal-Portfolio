@@ -38,7 +38,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-t from-[#0a0a0f] to-[#0f0f1a] border-t border-white/10 relative overflow-hidden">
-      {/* Background effects */}
+      {}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
@@ -46,7 +46,7 @@ const Footer = () => {
 
       <div className="container mx-auto px-6 py-12 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-8">
-          {/* Brand Section */}
+          {}
           <div className="space-y-4">
             <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">
               {personalInfo.name}
@@ -71,7 +71,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {}
           <div>
             <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
@@ -90,7 +90,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {}
           <div>
             <h4 className="text-lg font-bold text-white mb-4">Get In Touch</h4>
             <ul className="space-y-3 text-gray-400">
@@ -117,7 +117,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {}
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm text-center md:text-left">

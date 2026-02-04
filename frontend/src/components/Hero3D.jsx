@@ -14,7 +14,7 @@ const Hero3D = () => {
     let animationFrameId;
     let particles = [];
 
-    // Set canvas size
+    
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -22,7 +22,7 @@ const Hero3D = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Particle class
+    
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -63,12 +63,12 @@ const Hero3D = () => {
       }
     }
 
-    // Initialize particles
+    
     for (let i = 0; i < 150; i++) {
       particles.push(new Particle());
     }
 
-    // Animation loop
+    
     const animate = () => {
       ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -98,13 +98,13 @@ const Hero3D = () => {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0f] via-[#0f0f1a] to-[#1a0f2e]">
-      {/* 3D Particle Canvas Background */}
+      {}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
       />
 
-      {/* Floating geometric shapes */}
+      {}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl animate-float-delayed" />
@@ -112,10 +112,10 @@ const Hero3D = () => {
         <div className="absolute top-1/3 right-1/4 w-24 h-24 border-2 border-cyan-600/20 animate-spin-reverse" />
       </div>
 
-      {/* Main Content */}
+      {}
       <div className="container mx-auto px-6 z-10 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text Content */}
+          {}
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-blue-400 font-mono text-sm">
@@ -142,7 +142,7 @@ const Hero3D = () => {
               <span>{personalInfo.location}</span>
             </div>
 
-            {/* CTA Buttons */}
+            {}
             <div className="flex flex-wrap gap-4">
               <a
                 href="#projects"
@@ -159,7 +159,7 @@ const Hero3D = () => {
               </a>
             </div>
 
-            {/* Social Links */}
+            {}
             <div className="flex gap-4 pt-4">
               <a
                 href={personalInfo.github}
@@ -186,13 +186,13 @@ const Hero3D = () => {
             </div>
           </div>
 
-          {/* Right: Smaller Profile Image in corner */}
+          {}
           <div className="relative flex justify-end items-start animate-fade-in-up animation-delay-300">
             <div className="relative group">
-              {/* Glowing rings */}
+              {}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse" />
               
-              {/* Image container with 3D effect - smaller size */}
+              {}
               <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-blue-600/30 shadow-2xl shadow-blue-600/20 transform hover:scale-105 transition-transform duration-500 hover:rotate-2">
                 <img
                   src={personalInfo.profileImage}
@@ -200,11 +200,11 @@ const Hero3D = () => {
                   className="w-full h-full object-cover object-center"
                   style={{ objectPosition: 'center 20%' }}
                 />
-                {/* Overlay gradient */}
+                {}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/50 to-transparent" />
               </div>
 
-              {/* Floating tech icons - adjusted positions */}
+              {}
               <div className="absolute -top-6 -right-6 w-16 h-16 bg-blue-600/10 backdrop-blur-sm rounded-xl border border-blue-600/30 flex items-center justify-center animate-float">
                 <Code2 className="w-8 h-8 text-blue-400" />
               </div>
@@ -216,7 +216,7 @@ const Hero3D = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {}
       <button
         onClick={scrollToNext}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce cursor-pointer bg-transparent border-none"

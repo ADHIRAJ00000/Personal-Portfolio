@@ -1,9 +1,9 @@
-/* Smooth scrolling */
+
 html {
     scroll-behavior: smooth;
 }
 
-/* Custom 3D Animations */
+
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
@@ -87,7 +87,7 @@ html {
     }
 }
 
-/* Animation classes */
+
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
@@ -120,7 +120,7 @@ html {
     animation: scroll 2s ease-in-out infinite;
 }
 
-/* Animation delays */
+
 .animation-delay-300 {
     animation-delay: 300ms;
 }
@@ -129,7 +129,7 @@ html {
     animation-delay: 500ms;
 }
 
-/* Custom cursor effect (optional enhancement) */
+
 body {
     cursor: default;
 }

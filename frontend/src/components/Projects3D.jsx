@@ -7,14 +7,14 @@ const Projects3D = () => {
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-[#0f0f1a] to-[#0a0a0f] relative overflow-hidden">
-      {/* Background decorations */}
+      {}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
+        {}
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
             <div className="w-12 h-0.5 bg-blue-400" />
@@ -29,7 +29,7 @@ const Projects3D = () => {
           </p>
         </div>
 
-        {/* Projects Grid */}
+        {}
         <div className="grid lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
@@ -39,26 +39,26 @@ const Projects3D = () => {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Card with 3D effect */}
+              {}
               <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-blue-600/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20">
-                {/* Project Image */}
+                {}
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  {/* Overlay gradient */}
+                  {}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-60" />
                   
-                  {/* Featured badge */}
+                  {}
                   {project.featured && (
                     <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-bold rounded-full">
                       FEATURED
                     </div>
                   )}
 
-                  {/* Quick links overlay */}
+                  {}
                   <div className={`absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-opacity duration-300 ${
                     hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
                   }`}>
@@ -81,7 +81,7 @@ const Projects3D = () => {
                   </div>
                 </div>
 
-                {/* Project Info */}
+                {}
                 <div className="p-6 space-y-4">
                   <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
                     {project.title}
@@ -95,7 +95,7 @@ const Projects3D = () => {
                     {project.longDescription}
                   </p>
 
-                  {/* Tech Stack */}
+                  {}
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
@@ -107,7 +107,7 @@ const Projects3D = () => {
                     ))}
                   </div>
 
-                  {/* View Project Link */}
+                  {}
                   <div className="pt-4 border-t border-white/10">
                     <a
                       href={project.link}
@@ -121,7 +121,7 @@ const Projects3D = () => {
                   </div>
                 </div>
 
-                {/* 3D depth effect */}
+                {}
                 <div className="absolute inset-0 pointer-events-none rounded-2xl">
                   <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/0 via-transparent to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10 transition-all duration-500 rounded-2xl" />
                 </div>
@@ -130,7 +130,7 @@ const Projects3D = () => {
           ))}
         </div>
 
-        {/* View All Projects Button */}
+        {}
         <div className="text-center mt-12 animate-fade-in-up animation-delay-500">
           <a
             href={personalInfo.github}

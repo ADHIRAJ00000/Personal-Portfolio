@@ -24,7 +24,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Mock form submission
+    
     setTimeout(() => {
       console.log('Form submitted:', formData);
       toast({
@@ -37,7 +37,7 @@ const Contact = () => {
   };
 
   const downloadResume = () => {
-    // Mock resume download
+    
     toast({
       title: "Resume Download",
       description: "Resume download will be available soon!",
@@ -46,14 +46,14 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-[#0f0f1a] to-[#0a0a0f] relative overflow-hidden">
-      {/* Background effects */}
+      {}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
+        {}
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
             <div className="w-12 h-0.5 bg-blue-400" />
@@ -69,7 +69,7 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+          {}
           <div className="space-y-8 animate-fade-in-left">
             <div>
               <h3 className="text-3xl font-bold text-white mb-6">
@@ -81,7 +81,7 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Contact Details */}
+            {}
             <div className="space-y-4">
               <a
                 href={`mailto:${personalInfo.email}`}
@@ -126,7 +126,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Links */}
+            {}
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Connect on Social</h4>
               <div className="flex gap-4">
@@ -149,7 +149,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Download Resume */}
+            {}
             <button
               onClick={downloadResume}
               className="group w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 hover:scale-105"
@@ -159,7 +159,7 @@ const Contact = () => {
             </button>
           </div>
 
-          {/* Contact Form */}
+          {}
           <div className="animate-fade-in-right">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>

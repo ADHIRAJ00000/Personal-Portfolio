@@ -47,7 +47,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
@@ -56,7 +56,7 @@ const Navbar = () => {
             AS
           </a>
 
-          {/* Desktop Navigation */}
+          {}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -71,7 +71,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button - Desktop */}
+          {}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
@@ -80,7 +80,7 @@ const Navbar = () => {
             Hire Me
           </a>
 
-          {/* Mobile Menu Button */}
+          {}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-gray-300 hover:text-blue-400 transition-colors"
@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden ${
           isMobileMenuOpen ? 'max-h-96' : 'max-h-0'
