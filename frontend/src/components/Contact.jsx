@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { personalInfo } from '../data/mockData';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Download } from 'lucide-react';
-import { toast } from '../hooks/use-toast';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-const Contact = () => {
+const Contact = ({ data }) => {
+  const { personalInfo } = data;
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,226 +24,220 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you soon!",
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      // EmailJS configuration
+      // Replace these with your actual EmailJS credentials
+      const serviceId = 'service_uvpm56r';
+      const templateId = 'template_daotr8s';
+      const publicKey = 'U_sH9L3XeT6ASid6d';
+
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+
       setIsSubmitting(false);
-    }, 1500);
-  };
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
 
-  const downloadResume = () => {
-    
-    toast({
-      title: "Resume Download",
-      description: "Resume download will be available soon!",
-    });
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      setIsSubmitting(false);
+      setError('Failed to send message. Please try again.');
+      console.error('EmailJS error:', err);
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-[#0f0f1a] to-[#0a0a0f] relative overflow-hidden">
-      {}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
-            <div className="w-12 h-0.5 bg-blue-400" />
-            <span>Get In Touch</span>
-            <div className="w-12 h-0.5 bg-blue-400" />
+    <section id="contact" className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500"></div>
+            <span className="text-blue-400">Get In Touch</span>
+            <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-blue-500"></div>
           </div>
-          <h2 className="text-5xl font-bold text-white mb-4">
-            Contact <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Me</span>
+          <h2 className="section-title">
+            Contact <span className="text-blue-400">Me</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Let's collaborate and build something amazing together
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {}
-          <div className="space-y-8 animate-fade-in-left">
-            <div>
-              <h3 className="text-3xl font-bold text-white mb-6">
-                Let's <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Connect</span>
-              </h3>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. 
-                Feel free to reach out!
-              </p>
-            </div>
+          {/* Contact Info - Left Side */}
+          <div className="animate-fade-in-up">
+            <h3 className="text-2xl font-bold text-slate-800 mb-2">
+              Let's <span className="text-blue-500">Connect</span>
+            </h3>
+            <p className="text-slate-600 mb-8 leading-relaxed">
+              I'm always excited to discuss new projects, creative ideas, or opportunities
+              to be part of your vision. Feel free to reach out!
+            </p>
 
-            {}
-            <div className="space-y-4">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-blue-600/30 transition-all duration-300 hover:scale-105"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Mail className="w-6 h-6 text-white" />
+            {/* Contact Cards */}
+            <div className="space-y-4 mb-8">
+              {/* Email Card */}
+              <div className="card flex items-center gap-4 py-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-envelope text-white"></i>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-400">Email</div>
-                  <div className="text-white font-semibold group-hover:text-blue-400 transition-colors">
-                    {personalInfo.email}
-                  </div>
+                  <p className="text-slate-500 text-xs">Email</p>
+                  <p className="text-slate-800 font-medium">{personalInfo?.email}</p>
                 </div>
-              </a>
+              </div>
 
-              <a
-                href={`tel:${personalInfo.phone}`}
-                className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-blue-600/30 transition-all duration-300 hover:scale-105"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Phone className="w-6 h-6 text-white" />
+              {/* Phone Card */}
+              <div className="card flex items-center gap-4 py-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-phone text-white"></i>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-400">Phone</div>
-                  <div className="text-white font-semibold group-hover:text-blue-400 transition-colors">
-                    {personalInfo.phone}
-                  </div>
+                  <p className="text-slate-500 text-xs">Phone</p>
+                  <p className="text-slate-800 font-medium">{personalInfo?.phone}</p>
                 </div>
-              </a>
+              </div>
 
-              <div className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
+              {/* Location Card */}
+              <div className="card flex items-center gap-4 py-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-map-marker-alt text-white"></i>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-400">Location</div>
-                  <div className="text-white font-semibold">
-                    {personalInfo.location}
-                  </div>
+                  <p className="text-slate-500 text-xs">Location</p>
+                  <p className="text-slate-800 font-medium">{personalInfo?.location}</p>
                 </div>
               </div>
             </div>
 
-            {}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Connect on Social</h4>
-              <div className="flex gap-4">
+            {/* Social Links */}
+            <div className="mb-6">
+              <p className="text-slate-800 font-medium mb-4">Connect on Social</p>
+              <div className="flex gap-3">
                 <a
-                  href={personalInfo.github}
+                  href={personalInfo?.social?.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-blue-600/30 transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all"
                 >
-                  <Github className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
+                  <i className="fab fa-github"></i>
                 </a>
                 <a
-                  href={personalInfo.linkedin}
+                  href={personalInfo?.social?.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-blue-600/30 transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all"
                 >
-                  <Linkedin className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href={personalInfo?.social?.email}
+                  className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all"
+                >
+                  <i className="fas fa-envelope"></i>
                 </a>
               </div>
             </div>
 
-            {}
-            <button
-              onClick={downloadResume}
-              className="group w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 hover:scale-105"
+            {/* Download Resume Button */}
+            <a
+              href="/mine.pdf"
+              download="Resume.pdf"
+              className="w-full btn-primary flex items-center justify-center gap-2"
             >
-              <Download className="w-5 h-5 group-hover:animate-bounce" />
+              <i className="fas fa-download"></i>
               Download Resume
-            </button>
+            </a>
           </div>
 
-          {}
-          <div className="animate-fade-in-right">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Contact Form - Right Side */}
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-300 mb-2">
-                  Your Name
-                </label>
+                <label className="block text-slate-700 text-sm mb-2">Your Name</label>
                 <input
                   type="text"
-                  id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-all"
+                  className="form-input"
                   placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-300 mb-2">
-                  Your Email
-                </label>
+                <label className="block text-slate-700 text-sm mb-2">Your Email</label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-all"
+                  className="form-input"
                   placeholder="john@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-semibold text-gray-300 mb-2">
-                  Subject
-                </label>
+                <label className="block text-slate-700 text-sm mb-2">Subject</label>
                 <input
                   type="text"
-                  id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-all"
+                  className="form-input"
                   placeholder="Project Discussion"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-300 mb-2">
-                  Message
-                </label>
+                <label className="block text-slate-700 text-sm mb-2">Message</label>
                 <textarea
-                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-all resize-none"
+                  rows="5"
+                  className="form-input resize-none"
                   placeholder="Tell me about your project..."
-                />
+                ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <i className="fas fa-spinner fa-spin"></i>
                     Sending...
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <i className="fas fa-paper-plane"></i>
                     Send Message
                   </>
                 )}
               </button>
+
+              {submitted && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-600 text-center">
+                  <i className="fas fa-check-circle mr-2"></i>
+                  Message sent successfully!
+                </div>
+              )}
+
+              {error && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-center">
+                  <i className="fas fa-exclamation-circle mr-2"></i>
+                  {error}
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -1,149 +1,91 @@
 import React, { useState } from 'react';
-import { skills } from '../data/mockData';
-import { Code, Database, Cpu, Terminal, Wrench, BookOpen, Users, UsersRound, Lightbulb, Shuffle } from 'lucide-react';
 
-const Skills3D = () => {
+const Skills3D = ({ data }) => {
+  const { skills } = data;
   const [activeCategory, setActiveCategory] = useState('all');
 
-  const categories = [
-    { id: 'all', name: 'All Skills', icon: Code },
-    { id: 'frontend', name: 'Frontend', icon: Terminal },
-    { id: 'backend', name: 'Backend', icon: Cpu },
-    { id: 'database', name: 'Database', icon: Database },
-    { id: 'language', name: 'Languages', icon: Code },
-    { id: 'tools', name: 'Tools', icon: Wrench },
-    { id: 'cs', name: 'CS Fundamentals', icon: BookOpen }
-  ];
+  // Filter skills based on active category
+  const filteredSkills = activeCategory === 'all'
+    ? skills?.technical
+    : skills?.technical?.filter(skill => skill.category === activeCategory);
 
-  const filteredSkills = activeCategory === 'all' 
-    ? skills.technical 
-    : skills.technical.filter(skill => skill.category === activeCategory);
-
-  const getCategoryColor = (category) => {
+  // Get category color based on category id
+  const getCategoryColor = (categoryId) => {
     const colors = {
-      frontend: 'from-blue-600 to-blue-500',
-      backend: 'from-cyan-600 to-pink-500',
-      database: 'from-green-500 to-emerald-500',
-      language: 'from-yellow-500 to-orange-500',
-      tools: 'from-red-500 to-rose-500',
-      cs: 'from-indigo-500 to-violet-500'
+      frontend: '#3B82F6',
+      backend: '#8B5CF6',
+      database: '#10B981',
+      languages: '#F59E0B',
+      tools: '#EF4444',
+      cs: '#6366F1'
     };
-    return colors[category] || 'from-blue-600 to-cyan-600';
+    return colors[categoryId] || '#3B82F6';
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-[#0a0a0f] to-[#0f0f1a] relative overflow-hidden">
-      {}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
-            <div className="w-12 h-0.5 bg-blue-400" />
-            <span>Technical Expertise</span>
-            <div className="w-12 h-0.5 bg-blue-400" />
+    <section id="skills" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500"></div>
+            <span className="text-blue-400">Technical Expertise</span>
+            <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-blue-500"></div>
           </div>
-          <h2 className="text-5xl font-bold text-white mb-4">
-            Skills & <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Technologies</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="section-title">Skills & Technologies</h2>
+          <p className="section-subtitle">
             A comprehensive toolkit for building modern web applications
           </p>
         </div>
 
-        {}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up animation-delay-300">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`group px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
-                  activeCategory === category.id
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-600/30 scale-105'
-                    : 'bg-white/5 text-gray-400 border border-white/10 hover:border-blue-600/50 hover:text-white'
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-5xl mx-auto">
+          {skills?.categories?.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category.id
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                  : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                 }`}
-              >
-                <Icon className="w-5 h-5" />
-                {category.name}
-              </button>
-            );
-          })}
+            >
+              <i className={`fas ${category.icon}`}></i>
+              {category.label}
+            </button>
+          ))}
         </div>
 
-        {}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {filteredSkills.map((skill, index) => (
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {filteredSkills?.map((skill, index) => (
             <div
-              key={skill.name}
-              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-blue-600/30 transition-all duration-300 hover:scale-105 animate-fade-in-up"
-              style={{ animationDelay: `${index * 50}ms` }}
+              key={`${activeCategory}-${index}`}
+              className="card animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                  {skill.name}
-                </h3>
-              </div>
-              
-              {}
-              <div className="relative h-3 bg-gray-800/50 rounded-full overflow-hidden">
-                <div 
-                  className={`absolute inset-y-0 left-0 bg-gradient-to-r ${getCategoryColor(skill.category)} rounded-full transition-all duration-1000 ease-out shadow-lg`}
-                  style={{ 
-                    width: `${skill.level}%`,
-                    boxShadow: '0 0 20px rgba(0, 217, 255, 0.5)'
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20 rounded-full" />
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 text-xl">
+                  <i className={skill.icon}></i>
                 </div>
+                <h3 className="text-lg font-bold text-slate-800">{skill.name}</h3>
               </div>
-
-              {}
+              <div className="skill-bar-container">
+                <div
+                  className="skill-bar-fill"
+                  style={{
+                    width: `${skill.level}%`,
+                    background: `linear-gradient(90deg, ${getCategoryColor(skill.category)}, ${getCategoryColor(skill.category)}aa)`
+                  }}
+                ></div>
+              </div>
               <div className="mt-3">
-                <span className="inline-block px-3 py-1 text-xs font-mono bg-white/5 text-gray-400 rounded-full border border-white/10">
+                <span
+                  className="inline-block px-2 py-1 rounded text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200"
+                >
                   {skill.category}
                 </span>
               </div>
             </div>
           ))}
-        </div>
-
-        {}
-        <div className="animate-fade-in-up animation-delay-500">
-          <h3 className="text-3xl font-bold text-white text-center mb-8">
-            Soft <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Skills</span>
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.soft.map((skill, index) => {
-              const iconMap = {
-                'Leadership': Users,
-                'Teamwork': UsersRound,
-                'Problem Solving': Lightbulb,
-                'Adaptability': Shuffle
-              };
-              const IconComponent = iconMap[skill.name] || Users;
-              
-              return (
-                <div
-                  key={skill.name}
-                  className="group bg-gradient-to-br from-blue-600/10 to-cyan-600/10 backdrop-blur-sm border border-blue-600/30 rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:scale-110 transition-transform">
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                  <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
-                    {skill.name}
-                  </h4>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>

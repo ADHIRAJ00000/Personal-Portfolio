@@ -1,149 +1,154 @@
+export const portfolioData = {
+  personalInfo: {
+    name: "Adhiraj Singh",
+    title: "Full Stack Developer",
+    subtitle: "MERN Stack Specialist",
+    bio: "Dynamic software developer excelling in MERN Stack. Adept at project management and system debugging, delivering innovative solutions that enhance user experience.",
+    email: "adhirajsingh00000@gmail.com",
+    phone: "+91 8604904661",
+    location: "Bengaluru, Karnataka, IN",
+    profileImage: "/profile.jpg",
+    social: {
+      github: "https://github.com/ADHIRAJ00000",
+      linkedin: "https://www.linkedin.com/in/adhiraj-singh-bb511127b/",
 
+      email: "adhirajsingh00000@gmail.com"
+    }
+  },
 
-export const personalInfo = {
-  name: "Adhiraj Singh",
-  title: "Full Stack Developer",
-  subtitle: "MERN Stack Specialist",
-  location: "Bengaluru, Karnataka, IN",
-  email: "adhirajsingh00000@gmail.com",
-  phone: "+91 8604904661",
-  linkedin: "https://www.linkedin.com/in/adhiraj-singh-bb511127b/",
-  github: "https://github.com/ADHIRAJ00000",
-  profileImage: "https://customer-assets.emergentagent.com/job_dark-dimension-cv/artifacts/sn02tkp9_WhatsApp%20Image%202025-11-24%20at%2023.50.20.jpeg",
-  about: "Dynamic software developer, excelling in MERN Stack. Adept at project management and system debugging, I deliver innovative solutions that enhance user experience. My strong foundation in data structures and algorithms drives efficient coding practices, ensuring high-quality results in every project."
-};
-
-export const skills = {
-  technical: [
-    { name: "React.js", level: 90, category: "frontend" },
-    { name: "Node.js", level: 85, category: "backend" },
-    { name: "Express.js", level: 85, category: "backend" },
-    { name: "MongoDB", level: 80, category: "database" },
-    { name: "JavaScript", level: 90, category: "language" },
-    { name: "Python", level: 75, category: "language" },
-    { name: "C++", level: 75, category: "language" },
-    { name: "HTML/CSS", level: 95, category: "frontend" },
-    { name: "Tailwind CSS", level: 90, category: "frontend" },
-    { name: "Git/GitHub", level: 85, category: "tools" },
-    { name: "SQL", level: 80, category: "database" },
-    { name: "SupaBase", level: 75, category: "database" },
-    { name: "DSA", level: 80, category: "cs" },
-    { name: "System Design", level: 75, category: "cs" },
-    { name: "Redux", level: 80, category: "frontend" }
+  education: [
+    {
+      degree: "Bachelor of Engineering",
+      institution: "BMS Institute of Technology & Management",
+      field: "Electronics and Telecommunication",
+      period: "2023 - Present",
+      grade: "CGPA: 7.95",
+      current: true
+    },
+    {
+      degree: "ISC (XII)",
+      institution: "Shri J.N. Shah Inter College",
+      field: "Science",
+      period: "2021-2022",
+      grade: "91.25%"
+    },
+    {
+      degree: "ICSE (X)",
+      institution: "Shri J.N. Shah Inter College",
+      field: "General",
+      period: "2019-2020",
+      grade: "92%"
+    }
   ],
-  soft: [
-    { name: "Leadership", icon: "Users" },
-    { name: "Teamwork", icon: "UsersRound" },
-    { name: "Problem Solving", icon: "Lightbulb" },
-    { name: "Adaptability", icon: "Shuffle" }
+
+  experience: [
+    {
+      title: "Full Stack Developer",
+      company: "Projects & Development",
+      description: "Developed multiple MERN stack applications with focus on user experience and performance.",
+      period: "2023 - Present",
+      achievements: [
+        "Built REST APIs and authentication modules",
+        "Created responsive dashboards with React",
+        "Integrated MongoDB databases efficiently",
+        "Deployed applications on cloud platforms"
+      ]
+    }
+  ],
+
+  stats: {
+    projectsCompleted: 10,
+    technologiesMastered: 15,
+    cgpa: 7.95,
+    awardsWon: 3
+  },
+
+  skills: {
+    categories: [
+      { id: 'all', label: 'All Skills', icon: 'fa-code' },
+      { id: 'frontend', label: 'Frontend', icon: 'fa-desktop' },
+      { id: 'backend', label: 'Backend', icon: 'fa-server' },
+      { id: 'database', label: 'Database', icon: 'fa-database' },
+      { id: 'languages', label: 'Languages', icon: 'fa-code' },
+      { id: 'tools', label: 'Tools', icon: 'fa-wrench' },
+      { id: 'cs', label: 'CS Fundamentals', icon: 'fa-book' }
+    ],
+    technical: [
+      { name: "React.js", category: "frontend", level: 100, icon: "fab fa-react" },
+      { name: "Node.js", category: "backend", level: 100, icon: "fab fa-node" },
+      { name: "Express.js", category: "backend", level: 100, icon: "fas fa-server" },
+      { name: "MongoDB", category: "database", level: 100, icon: "fas fa-database" },
+      { name: "JavaScript", category: "languages", level: 100, icon: "fab fa-js" },
+      { name: "Python", category: "languages", level: 100, icon: "fab fa-python" },
+      { name: "C++", category: "languages", level: 100, icon: "fas fa-code" },
+      { name: "Java", category: "languages", level: 100, icon: "fab fa-java" },
+      { name: "HTML/CSS", category: "frontend", level: 100, icon: "fab fa-html5" },
+      { name: "Tailwind CSS", category: "frontend", level: 100, icon: "fab fa-css3-alt" },
+      { name: "Git/GitHub", category: "tools", level: 100, icon: "fab fa-git-alt" },
+      { name: "SQL", category: "database", level: 100, icon: "fas fa-database" },
+      { name: "SupaBase", category: "database", level: 100, icon: "fas fa-bolt" },
+      { name: "Flask", category: "backend", level: 100, icon: "fas fa-flask" },
+      { name: "DSA", category: "cs", level: 100, icon: "fas fa-brain" },
+      { name: "System Design", category: "cs", level: 100, icon: "fas fa-project-diagram" },
+      { name: "DBMS", category: "cs", level: 100, icon: "fas fa-server" },
+      { name: "Operating System", category: "cs", level: 100, icon: "fas fa-desktop" },
+      { name: "Computer Networks", category: "cs", level: 100, icon: "fas fa-network-wired" },
+      { name: "Redux", category: "frontend", level: 100, icon: "fas fa-layer-group" }
+    ]
+  },
+
+  projects: [
+    {
+      title: "Social-Media Platform",
+      description: "Full-stack social-media platform with user authentication, post creation, and interaction features.",
+      image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=400&fit=crop",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Cloudinary"],
+      github: "https://github.com/ADHIRAJ00000/Social-Master-Media",
+      demo: "https://social-master-media.onrender.com/"
+    },
+    {
+      title: "Convoy-Command-Unit",
+      description: "Built a low-power, non-GPS tracking system for army convoys, enabling real-time proximity monitoring and detection for high-value assets.",
+      image: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=600&h=400&fit=crop",
+      technologies: ["React", "Typescript", "MongoDB", "Express", "Redux"],
+      github: "https://github.com/ADHIRAJ00000/Convoy-Command-Unit/tree/main",
+      demo: "https://hawkroute2-2-frontend-109n.onrender.com"
+    },
+    {
+      title: "Cloud Implementation on RISC-V",
+      description: "Cloud implementation on RISC-V architecture with virtualization, containerization, and cloud storage services.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      technologies: ["React", "Python", "Docker", "Chart.js", "Tailwind CSS"],
+      github: "https://github.com/ADHIRAJ00000/cloud-implementation-on-riscv",
+      // demo: "https://weather-demo.vercel.app"
+    }
+
+  ],
+
+  achievements: [
+    {
+      title: "National Level Hackathon Winner",
+      date: "December 2025",
+      description: "Developed 'Hawkroute,' a DefenceTech convoy intelligence system for coordination, route planning, and real-time decision support.",
+      highlight: "Secured 'Overall Runner-Up' and 'Best Software Team Award'",
+      icon: "trophy",
+      side: "left"
+    },
+    {
+      title: "HACKHZARDS '25",
+      date: "2025",
+      description: "Secured Top 100 among 2,900+ teams. Designed a low-power, non-GPS EV battery asset tracking system.",
+      highlight: "Top 100 / 2900+ teams",
+      icon: "award",
+      side: "right"
+    },
+    {
+      title: "State Level Basketball Player ",
+      date: "2023",
+      description: "Represented the state in basketball competitions, demonstrating leadership and teamwork.",
+      highlight: "State Level Recognition",
+      icon: "basketball",
+      side: "left"
+    }
   ]
 };
-
-export const projects = [
-  {
-    id: 1,
-    title: "Learnify",
-    description: "A full-stack AI-powered edTech platform for instant course creation and personalized learning paths.",
-    longDescription: "Built with MongoDB for efficient storage of AI-generated content, user data, and records. React.js frontend with secure authentication and smooth, intuitive learning workflows. Scalable Node.js/Express APIs for AI-driven course generation and real-time collaboration.",
-    technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Redux", "AI/ML"],
-    link: "https://learnify-pro-teal.vercel.app",
-    github: "https://github.com/ADHIRAJ00000",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Money Matters",
-    description: "A finance management app that categorizes monthly income into needs, wants, and spending insights.",
-    longDescription: "Features goal-setting for users to plan, monitor, and achieve financial targets. Integrated interactive charts and visualizations for presenting income, expenses, and savings data.",
-    technologies: ["React.js", "Node.js", "MongoDB", "Chart.js", "Express.js"],
-    link: "https://money-matters-mu.vercel.app",
-    github: "https://github.com/ADHIRAJ00000",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop",
-    featured: true
-  },
-  {
-    id: 3,
-    title: "Convoy Command-Unit",
-    description: "A low-power, non-GPS asset tracking system for EV battery swapping networks.",
-    longDescription: "Addresses logistical and security challenges with reduced dependence on power-intensive GPS. Enables real-time proximity reporting and automated tamper detection to secure EV battery packs.",
-    technologies: ["React.js", "Node.js", "IoT", "Express.js", "Real-time APIs"],
-    link: "https://hawkroute2-2-frontend-109n.onrender.com",
-    github: "https://github.com/ADHIRAJ00000",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
-    featured: true
-  }
-];
-
-export const achievements = [
-  {
-    id: 1,
-    title: "National Level Hackathon Winner",
-    description: 'Developed "Hawkroute," a DefenceTech convoy intelligence system for coordination, route planning, and real-time decision support.',
-    award: 'Secured "Overall Runner-Up" and "Best Software Team Award"',
-    date: "December 2025",
-    icon: "Trophy"
-  },
-  {
-    id: 2,
-    title: "HACKHZARDS '25",
-    description: "Secured Top 100 among 2,900+ teams. Designed a low-power, non-GPS EV battery asset tracking system.",
-    award: "Top 100 / 2900+ teams",
-    date: "2025",
-    icon: "Award"
-  },
-  {
-    id: 3,
-    title: "State Level Basketball Player",
-    description: "Represented the state in basketball competitions, demonstrating leadership and teamwork.",
-    award: "State Level Recognition",
-    date: "2023",
-    icon: "Medal"
-  }
-];
-
-export const education = [
-  {
-    id: 1,
-    institution: "BMS Institute of Technology & Management",
-    degree: "Bachelor of Engineering",
-    field: "Electronics and Telecommunication",
-    grade: "CGPA: 7.95",
-    period: "2023 - Present",
-    current: true
-  },
-  {
-    id: 2,
-    institution: "Shri J.N. Shah Inter College",
-    degree: "ISC (XII)",
-    field: "Science",
-    grade: "91.25%",
-    period: "2021-2022",
-    current: false
-  },
-  {
-    id: 3,
-    institution: "Shri J.N. Shah Inter College",
-    degree: "ICSE (X)",
-    field: "General",
-    grade: "92%",
-    period: "2019-2020",
-    current: false
-  }
-];
-
-export const experience = [
-  {
-    id: 1,
-    role: "Full Stack Developer",
-    type: "Projects & Development",
-    description: "Developed multiple MERN stack applications with focus on user experience and performance.",
-    achievements: [
-      "Built REST APIs and authentication modules",
-      "Created responsive dashboards with React",
-      "Integrated MongoDB databases efficiently",
-      "Deployed applications on cloud platforms"
-    ],
-    period: "2023 - Present"
-  }
-];

@@ -1,230 +1,138 @@
-import React, { useEffect, useRef } from 'react';
-import { personalInfo } from '../data/mockData';
-import { ArrowDown, Github, Linkedin, Mail, MapPin, Code2, Terminal } from 'lucide-react';
+import React from 'react';
+import { scrollToSection } from '../lib/utils';
 
-const Hero3D = () => {
-  const canvasRef = useRef(null);
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    let particles = [];
-
-    
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 1000;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.speedZ = Math.random() * 2 + 1;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.z -= this.speedZ;
-
-        if (this.z <= 0) {
-          this.z = 1000;
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        }
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-
-      draw() {
-        const scale = 1000 / (1000 + this.z);
-        const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
-        const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
-        const size = this.size * scale;
-
-        const opacity = 1 - this.z / 1000;
-        ctx.fillStyle = `rgba(0, 217, 255, ${opacity * 0.8})`;
-        ctx.beginPath();
-        ctx.arc(x2d, y2d, size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    
-    for (let i = 0; i < 150; i++) {
-      particles.push(new Particle());
-    }
-
-    
-    const animate = () => {
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  const scrollToNext = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const Hero3D = ({ data }) => {
+  const { personalInfo } = data;
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0f] via-[#0f0f1a] to-[#1a0f2e]">
-      {}
-      <canvas
-        ref={canvasRef}
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div
         className="absolute inset-0 z-0"
-      />
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      ></div>
+      {/* Light overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-blue-50/80 z-0"></div>
 
-      {}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/4 w-32 h-32 border-2 border-blue-600/20 rotate-45 animate-spin-slow" />
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 border-2 border-cyan-600/20 animate-spin-reverse" />
-      </div>
+      {/* Decorative Background Elements */}
+      {/* Large soft circle - top right */}
+      <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl z-0"></div>
+      {/* Large soft circle - bottom left */}
+      <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-indigo-200/20 blur-3xl z-0"></div>
+      {/* Medium circle - top left */}
+      <div className="absolute top-40 left-10 w-32 h-32 rounded-full bg-sky-200/30 blur-2xl z-0"></div>
+      {/* Small circle - right side */}
+      <div className="absolute top-1/3 right-20 w-24 h-24 rounded-full bg-blue-100/50 blur-xl z-0"></div>
+      {/* Decorative dots pattern */}
+      <div className="absolute top-20 right-1/4 w-2 h-2 rounded-full bg-blue-400/40 z-0"></div>
+      <div className="absolute top-32 right-1/3 w-1.5 h-1.5 rounded-full bg-indigo-400/30 z-0"></div>
+      <div className="absolute bottom-40 left-1/4 w-2 h-2 rounded-full bg-sky-400/30 z-0"></div>
+      <div className="absolute bottom-32 right-1/3 w-1 h-1 rounded-full bg-blue-500/30 z-0"></div>
 
-      {}
-      <div className="container mx-auto px-6 z-10 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {}
-          <div className="space-y-8 animate-fade-in-up">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-blue-400 font-mono text-sm">
-                <div className="w-12 h-0.5 bg-blue-400" />
-                <span>Hello, I'm</span>
-              </div>
-              <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
-                {personalInfo.name}
-              </h1>
-              <h2 className="text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">
-                {personalInfo.title}
-              </h2>
-              <p className="text-xl text-gray-400 font-mono">
-                {personalInfo.subtitle}
-              </p>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Left Content */}
+          <div className="text-center lg:text-left animate-fade-in-up">
+            <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-6">
+              <span className="text-blue-400 text-sm font-medium">
+                <i className="fas fa-code mr-2"></i>
+                {personalInfo?.subtitle}
+              </span>
             </div>
 
-            <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
-              {personalInfo.about}
+            <h1 className="hero-title mb-6">
+              Hi, I'm {personalInfo?.name}
+            </h1>
+
+            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+              {personalInfo?.bio}
             </p>
 
-            <div className="flex items-center gap-3 text-gray-400">
-              <MapPin className="w-5 h-5 text-blue-400" />
-              <span>{personalInfo.location}</span>
-            </div>
-
-            {}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#projects"
-                className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="btn-primary"
               >
                 View My Work
-                <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-              </a>
-              <a
-                href="#contact"
-                className="px-8 py-4 border-2 border-blue-600 text-blue-400 font-semibold rounded-lg hover:bg-blue-600/10 transition-all duration-300 hover:scale-105"
+                <i className="fas fa-arrow-right ml-2"></i>
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="btn-secondary"
               >
                 Get In Touch
-              </a>
+              </button>
             </div>
 
-            {}
-            <div className="flex gap-4 pt-4">
+            {/* Social Links */}
+            <div className="flex gap-4 mt-8 justify-center lg:justify-start">
               <a
-                href={personalInfo.github}
+                href={personalInfo?.social?.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/5 border border-white/10 rounded-lg hover:border-blue-600 hover:bg-blue-600/10 transition-all duration-300 hover:scale-110"
+                className="social-link"
               >
-                <Github className="w-6 h-6 text-gray-300" />
+                <i className="fab fa-github text-xl text-slate-600"></i>
               </a>
               <a
-                href={personalInfo.linkedin}
+                href={personalInfo?.social?.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/5 border border-white/10 rounded-lg hover:border-blue-600 hover:bg-blue-600/10 transition-all duration-300 hover:scale-110"
+                className="social-link"
               >
-                <Linkedin className="w-6 h-6 text-gray-300" />
+                <i className="fab fa-linkedin-in text-xl text-slate-600"></i>
               </a>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="p-3 bg-white/5 border border-white/10 rounded-lg hover:border-blue-600 hover:bg-blue-600/10 transition-all duration-300 hover:scale-110"
-              >
-                <Mail className="w-6 h-6 text-gray-300" />
-              </a>
+
             </div>
           </div>
 
-          {}
-          <div className="relative flex justify-end items-start animate-fade-in-up animation-delay-300">
-            <div className="relative group">
-              {}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse" />
-              
-              {}
-              <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-blue-600/30 shadow-2xl shadow-blue-600/20 transform hover:scale-105 transition-transform duration-500 hover:rotate-2">
+          {/* Right Content - Profile Image */}
+          <div className="flex justify-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-2xl opacity-30 animate-pulse"></div>
+              <div className="relative w-[450px] h-[450px] rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl">
                 <img
-                  src={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover object-center"
-                  style={{ objectPosition: 'center 20%' }}
+                  src="/profile-new.jpg"
+                  alt={personalInfo?.name}
+                  className="w-full h-full object-cover object-[35%_50%]"
                 />
-                {}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/50 to-transparent" />
               </div>
 
-              {}
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-blue-600/10 backdrop-blur-sm rounded-xl border border-blue-600/30 flex items-center justify-center animate-float">
-                <Code2 className="w-8 h-8 text-blue-400" />
+              {/* Floating Tech Icons */}
+              <div className="absolute -top-4 -right-4 w-14 h-14 bg-white shadow-lg rounded-xl border border-slate-100 flex items-center justify-center animate-bounce" style={{ animationDuration: '3s' }}>
+                <i className="fab fa-react text-blue-500 text-2xl"></i>
               </div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-cyan-600/10 backdrop-blur-sm rounded-xl border border-cyan-600/30 flex items-center justify-center animate-float-delayed">
-                <Terminal className="w-8 h-8 text-cyan-500" />
+              <div className="absolute top-20 -right-8 w-12 h-12 bg-white shadow-lg rounded-xl border border-slate-100 flex items-center justify-center animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+                <i className="fab fa-js text-yellow-500 text-xl"></i>
+              </div>
+              <div className="absolute bottom-20 -right-6 w-12 h-12 bg-white shadow-lg rounded-xl border border-slate-100 flex items-center justify-center animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>
+                <i className="fab fa-node text-green-500 text-xl"></i>
+              </div>
+              <div className="absolute bottom-32 -left-6 w-11 h-11 bg-white shadow-lg rounded-xl border border-slate-100 flex items-center justify-center animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '0.3s' }}>
+                <i className="fas fa-database text-sky-500 text-lg"></i>
+              </div>
+              <div className="absolute top-10 -left-4 w-10 h-10 bg-white shadow-lg rounded-xl border border-slate-100 flex items-center justify-center animate-bounce" style={{ animationDuration: '3.8s', animationDelay: '0.7s' }}>
+                <i className="fab fa-html5 text-orange-500 text-lg"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {}
-      <button
-        onClick={scrollToNext}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce cursor-pointer bg-transparent border-none"
-      >
-        <div className="w-6 h-10 border-2 border-blue-400 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-blue-400 rounded-full animate-scroll" />
-        </div>
-      </button>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+        <button
+          onClick={() => scrollToSection('about')}
+          className="text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          <i className="fas fa-chevron-down text-2xl"></i>
+        </button>
+      </div>
     </section>
   );
 };

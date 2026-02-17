@@ -1,6 +1,15 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge"
+export const cn = (...classes) => {
+  return classes.filter(Boolean).join(' ');
+};
 
-export function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}
+export const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+};
+
+export const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};

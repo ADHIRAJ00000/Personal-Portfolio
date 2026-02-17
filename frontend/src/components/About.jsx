@@ -1,141 +1,144 @@
 import React from 'react';
-import { personalInfo, education, experience } from '../data/mockData';
-import { GraduationCap, Briefcase, Code2 } from 'lucide-react';
 
-const About = () => {
+const About = ({ data }) => {
+  const { stats, experience } = data;
+
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-[#0f0f1a] to-[#0a0a0f] relative overflow-hidden">
-      {}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 text-blue-400 font-mono text-sm mb-4">
-            <div className="w-12 h-0.5 bg-blue-400" />
-            <span>Get To Know Me</span>
-            <div className="w-12 h-0.5 bg-blue-400" />
+    <section id="about" className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500"></div>
+            <span className="text-blue-400">Get To Know Me</span>
+            <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-blue-500"></div>
           </div>
-          <h2 className="text-5xl font-bold text-white mb-4">
-            About <span className="bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="section-title">About Me</h2>
+          <p className="section-subtitle">
             A passionate developer dedicated to building innovative solutions
           </p>
         </div>
 
-        {}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {}
-          <div className="space-y-6 animate-fade-in-left">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-blue-600/30 transition-all duration-300">
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <Code2 className="w-8 h-8 text-blue-400" />
-                My Journey
-              </h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                {personalInfo.about}
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                As a student at BMS Institute of Technology & Management, I'm constantly expanding my knowledge in 
-                software development, with a particular focus on the MERN stack and modern web technologies.
-              </p>
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Row 1: Journey and Metrics */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* My Journey Card */}
+            <div className="card h-full">
+              <div className="flex items-center gap-3 mb-4">
+                <i className="fas fa-code text-blue-400 text-xl"></i>
+                <h3 className="text-2xl font-bold text-slate-800">My Journey</h3>
+              </div>
+              <div className="space-y-4 text-slate-600 leading-relaxed">
+                <p>
+                  Dynamic software developer, excelling in MERN Stack. Adept at project management and system debugging, I deliver innovative solutions that enhance user experience. My strong foundation in data structures and algorithms drives efficient coding practices, ensuring high-quality results in every project.
+                </p>
+                <p>
+                  As a student at BMS Institute of Technology & Management, I'm constantly expanding my knowledge in software development, with a particular focus on the MERN stack and modern web technologies.
+                </p>
+              </div>
+            </div>
+
+            {/* Metrics */}
+            <div className="grid grid-cols-2 gap-4 h-full">
+              <div className="card py-6 px-6 flex flex-col justify-center">
+                <div className="text-3xl font-bold text-blue-500 mb-1">{stats?.projectsCompleted}+</div>
+                <div className="text-slate-800 font-medium text-sm">Projects</div>
+                <div className="text-slate-500 text-xs">Completed</div>
+              </div>
+              <div className="card py-6 px-6 flex flex-col justify-center">
+                <div className="text-3xl font-bold text-blue-500 mb-1">{stats?.technologiesMastered}+</div>
+                <div className="text-slate-800 font-medium text-sm">Technologies</div>
+                <div className="text-slate-500 text-xs">Mastered</div>
+              </div>
+              <div className="card py-6 px-6 flex flex-col justify-center">
+                <div className="text-3xl font-bold text-blue-500 mb-1">{stats?.cgpa}</div>
+                <div className="text-slate-800 font-medium text-sm">CGPA</div>
+                <div className="text-slate-500 text-xs">Academic</div>
+              </div>
+              <div className="card py-6 px-6 flex flex-col justify-center">
+                <div className="text-3xl font-bold text-blue-500 mb-1">{stats?.awardsWon}+</div>
+                <div className="text-slate-800 font-medium text-sm">Awards</div>
+                <div className="text-slate-500 text-xs">Won</div>
+              </div>
             </div>
           </div>
 
-          {}
-          <div className="grid grid-cols-2 gap-6 animate-fade-in-right">
-            <div className="bg-gradient-to-br from-blue-600/10 to-cyan-600/10 backdrop-blur-sm border border-blue-600/30 rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent mb-2">
-                3+
+          {/* Row 2: Education and Experience */}
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            {/* Education Section */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <i className="fas fa-graduation-cap text-blue-400 text-xl"></i>
+                <h3 className="text-xl font-bold text-slate-800">Education</h3>
               </div>
-              <div className="text-gray-300 font-semibold">Projects</div>
-              <div className="text-sm text-gray-400">Completed</div>
-            </div>
-            <div className="bg-gradient-to-br from-cyan-600/10 to-blue-600/10 backdrop-blur-sm border border-cyan-600/30 rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-2">
-                15+
-              </div>
-              <div className="text-gray-300 font-semibold">Technologies</div>
-              <div className="text-sm text-gray-400">Mastered</div>
-            </div>
-            <div className="bg-gradient-to-br from-blue-600/10 to-cyan-600/10 backdrop-blur-sm border border-blue-600/30 rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent mb-2">
-                7.95
-              </div>
-              <div className="text-gray-300 font-semibold">CGPA</div>
-              <div className="text-sm text-gray-400">Academic</div>
-            </div>
-            <div className="bg-gradient-to-br from-cyan-600/10 to-blue-600/10 backdrop-blur-sm border border-cyan-600/30 rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-2">
-                2+
-              </div>
-              <div className="text-gray-300 font-semibold">Awards</div>
-              <div className="text-sm text-gray-400">Won</div>
-            </div>
-          </div>
-        </div>
-
-        {}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {}
-          <div className="animate-fade-in-left animation-delay-300">
-            <div className="flex items-center gap-3 mb-6">
-              <GraduationCap className="w-8 h-8 text-blue-400" />
-              <h3 className="text-2xl font-bold text-white">Education</h3>
-            </div>
-            <div className="space-y-4">
-              {education.map((edu) => (
-                <div
-                  key={edu.id}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-blue-600/30 transition-all duration-300 hover:translate-x-2"
-                >
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
-                    {edu.current && (
-                      <span className="px-3 py-1 bg-blue-600/20 text-blue-400 text-xs font-mono rounded-full border border-blue-600/30">
-                        Current
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-blue-400 font-semibold mb-2">{edu.institution}</p>
-                  <p className="text-gray-400 text-sm mb-2">{edu.field}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500 text-sm font-mono">{edu.period}</span>
-                    <span className="text-green-400 font-semibold">{edu.grade}</span>
+              <div className="space-y-4">
+                {/* College */}
+                <div className="card">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-800 mb-1">Bachelor of Engineering</h4>
+                      <p className="text-blue-400 text-sm mb-1">BMS Institute of Technology & Management</p>
+                      <p className="text-slate-500 text-xs">Electronics and Telecommunication</p>
+                      <p className="text-slate-400 text-xs mt-1">2023 - Present</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">Current</span>
+                      <p className="text-green-400 font-bold mt-2">CGPA: 7.95</p>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {}
-          <div className="animate-fade-in-right animation-delay-300">
-            <div className="flex items-center gap-3 mb-6">
-              <Briefcase className="w-8 h-8 text-cyan-500" />
-              <h3 className="text-2xl font-bold text-white">Experience</h3>
+                {/* 12th */}
+                <div className="card">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-800 mb-1">ISC (XII)</h4>
+                      <p className="text-blue-400 text-sm mb-1">Shri J.N. Shah Inter College</p>
+                      <p className="text-slate-500 text-xs">Science</p>
+                      <p className="text-slate-400 text-xs mt-1">2021-2022</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-green-400 font-bold">91.25%</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 10th */}
+                <div className="card">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-800 mb-1">ICSE (X)</h4>
+                      <p className="text-blue-400 text-sm mb-1">Shri J.N. Shah Inter College</p>
+                      <p className="text-slate-500 text-xs">General</p>
+                      <p className="text-slate-400 text-xs mt-1">2019-2020</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-green-400 font-bold">92%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="space-y-4">
-              {experience.map((exp) => (
-                <div
-                  key={exp.id}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-cyan-600/30 transition-all duration-300 hover:translate-x-2"
-                >
-                  <h4 className="text-lg font-semibold text-white mb-2">{exp.role}</h4>
-                  <p className="text-cyan-500 font-semibold mb-2">{exp.type}</p>
-                  <p className="text-gray-400 text-sm mb-4">{exp.description}</p>
+
+            {/* Experience Section */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <i className="fas fa-briefcase text-blue-400 text-xl"></i>
+                <h3 className="text-xl font-bold text-slate-800">Experience</h3>
+              </div>
+              {experience?.map((exp, index) => (
+                <div key={index} className="card">
+                  <h4 className="text-lg font-bold text-slate-800 mb-1">{exp.title}</h4>
+                  <p className="text-blue-400 text-sm mb-3">{exp.company}</p>
+                  <p className="text-slate-600 text-sm mb-4">{exp.description}</p>
                   <ul className="space-y-2 mb-4">
-                    {exp.achievements.map((achievement, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-300 text-sm">
-                        <span className="text-blue-400 mt-1">▹</span>
-                        {achievement}
+                    {exp.achievements?.map((achievement, i) => (
+                      <li key={i} className="flex items-start gap-2 text-slate-600 text-sm">
+                        <i className="fas fa-caret-right text-blue-400 mt-1"></i>
+                        <span>{achievement}</span>
                       </li>
                     ))}
                   </ul>
-                  <span className="text-gray-500 text-sm font-mono">{exp.period}</span>
+                  <p className="text-slate-400 text-sm">{exp.period}</p>
                 </div>
               ))}
             </div>
